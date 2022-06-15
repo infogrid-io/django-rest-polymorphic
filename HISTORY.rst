@@ -6,6 +6,7 @@ History
 0.2.0 (Unreleased)
 ++++++++++++++++++
 
+* Fix serializer validation on partial update.
 * Add Python 3.9 & 3.10 support.
 * Add Django 3.2 & 4.0 support.
 * Add Django REST Framework 3.12 & 3.13 support.

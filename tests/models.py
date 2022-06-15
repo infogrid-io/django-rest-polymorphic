@@ -22,3 +22,8 @@ class BlogThree(BlogBase):
 
     class Meta:
         unique_together = (('info', 'about'),)
+
+
+class Webpage(models.Model):
+    url = models.CharField(max_length=20)
+    blog = models.OneToOneField(BlogBase, on_delete=models.CASCADE)
