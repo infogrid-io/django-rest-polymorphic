@@ -1,7 +1,7 @@
 coverage:
   precision: 2
   round: down
-  range: 70...100
+  range: 97...100
 
   status:
     project: true
@@ -11,6 +11,3 @@ coverage:
 comment:
   layout: "header, diff"
   behavior: default
-
-ignore:
-  - "rest_polymorphic/__version__.py"

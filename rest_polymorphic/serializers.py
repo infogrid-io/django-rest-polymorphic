@@ -1,5 +1,4 @@
 from collections.abc import Mapping
-from six import string_types
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
@@ -19,16 +18,16 @@ class PolymorphicSerializer(serializers.Serializer):
                     cls=cls.__name__
                 )
             )
-        if not isinstance(cls.resource_type_field_name, string_types):
+        if not isinstance(cls.resource_type_field_name, str):
             raise ImproperlyConfigured(
                 '`{cls}.resource_type_field_name` must be a string'.format(
                     cls=cls.__name__
                 )
             )
-        return super(PolymorphicSerializer, cls).__new__(cls, *args, **kwargs)
+        return super().__new__(cls, *args, **kwargs)
 
     def __init__(self, *args, **kwargs):
-        super(PolymorphicSerializer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         model_serializer_mapping = self.model_serializer_mapping
         self.model_serializer_mapping = {}
@@ -80,7 +79,7 @@ class PolymorphicSerializer(serializers.Serializer):
         return serializer.update(instance, validated_data)
 
     def is_valid(self, *args, **kwargs):
-        valid = super(PolymorphicSerializer, self).is_valid(*args, **kwargs)
+        valid = super().is_valid(*args, **kwargs)
         try:
             resource_type = self._get_resource_type_from_mapping(self.validated_data)
             serializer = self._get_serializer_from_resource_type(resource_type)
@@ -90,14 +89,13 @@ class PolymorphicSerializer(serializers.Serializer):
             child_valid = serializer.is_valid(*args, **kwargs)
             self._errors.update(serializer.errors)
         return valid and child_valid
-    
+
     def run_validation(self, data=empty):
         resource_type = self._get_resource_type_from_mapping(data)
         serializer = self._get_serializer_from_resource_type(resource_type)
         validated_data = serializer.run_validation(data)
         validated_data[self.resource_type_field_name] = resource_type
         return validated_data
-
 
     # --------------
     # Implementation

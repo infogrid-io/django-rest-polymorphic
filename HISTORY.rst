@@ -3,6 +3,22 @@
 History
 -------
 
+0.2.0 (Unreleased)
+++++++++++++++++++
+
+* Add Python 3.9 & 3.10 support.
+* Add Django 3.2 & 4.0 support.
+* Add Django REST Framework 3.12 & 3.13 support.
+* Drop Python 3.6 support.
+* Drop Django 3.0 support.
+* Drop Django REST Framework 3.8, 3.9, 3.10 & 3.11 support.
+* Replace Travis CI with GitHub Actions.
+* Migrate to setuptools declarative configuration.
+* Remove obsolete dependency on `six`.
+* Remove obsolete arguments from `super()`.
+* Remove obsolete imports from `__future__`.
+* Remove obsolete `# -*- coding: utf-8 -*-` comments.
+
 0.1.9 (2020-04-02)
 ++++++++++++++++++
 

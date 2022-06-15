@@ -147,7 +147,7 @@ class TestPolymorphicSerializer:
 
         data['slug'] = 'test-blog-slug-new'
         duplicate = BlogPolymorphicSerializer(data=data)
-        
+
         assert not duplicate.is_valid()
         assert 'non_field_errors' in duplicate.errors
         err = duplicate.errors['non_field_errors']
